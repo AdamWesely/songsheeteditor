@@ -40,8 +40,8 @@ class MainWindow(QMainWindow):
         self.ui.keyCombo.currentTextChanged.connect(self.song_changed)
         self.ui.lyricsEdit.textChanged.connect(self.song_changed)
         self.ui.actionSave.triggered.connect(self.save_backup)
-        self.ui.actionNewSong.triggered.connect(self.new_song)
-        self.ui.actionDeleteSong.triggered.connect(self.delete_song)
+        self.ui.actionNewSong.clicked.connect(self.new_song)
+        self.ui.actionDeleteSong.clicked.connect(self.delete_song)
 
     def save_backup(self):
 
