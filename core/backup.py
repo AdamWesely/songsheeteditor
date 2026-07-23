@@ -6,6 +6,8 @@ from pathlib import Path
 from copy import deepcopy
 from core.library import Library
 from models.song import Song
+import hashlib
+from copy import deepcopy
 
 
 class Backup:
@@ -90,6 +92,18 @@ class Backup:
 
         filename = Path(filename)
 
+        manifest = deepcopy(library.manifest)
+
+        manifest["library"]["songs"] = len(library.songs)
+        manifest["library"]["themes"] = len(library.themes)
+        manifest["library"]["tags"] = len(library.tags)
+        manifest["library"]["setlists"] = len(library.setlists)
+
+        manifest["entries"]["songs"] = []
+        manifest["entries"]["themes"] = []
+        manifest["entries"]["tags"] = []
+        manifest["entries"]["setlists"] = []
+
         with zipfile.ZipFile(
             filename,
             "w",
@@ -97,58 +111,77 @@ class Backup:
         ) as archive:
 
             #
-            # Manifest
-            #
-            self.save_json(
-                archive,
-                "manifest.json",
-                library.manifest,
-            )
-
-            #
             # Songs
             #
             for song in library.songs:
 
-                self.save_json(
-                    archive,
+                data = song.to_json()
+
+                archive.writestr(
                     song.path,
-                    song.to_json(),
+                    self.json_text(data),
                 )
+
+                manifest["entries"]["songs"].append({
+                    "id": song.id,
+                    "path": song.path,
+                    "checksum": self.checksum(data),
+                })
 
             #
             # Themes
             #
-            for theme in library.themes.values():
+            for ident, theme in library.themes.items():
 
-                self.save_json(
-                    archive,
+                archive.writestr(
                     theme["path"],
-                    theme["data"],
+                    self.json_text(theme["data"]),
                 )
+
+                manifest["entries"]["themes"].append({
+                    "id": ident,
+                    "path": theme["path"],
+                    "checksum": self.checksum(theme["data"]),
+                })
 
             #
             # Tags
             #
-            for tag in library.tags.values():
+            for ident, tag in library.tags.items():
 
-                self.save_json(
-                    archive,
+                archive.writestr(
                     tag["path"],
-                    tag["data"],
+                    self.json_text(tag["data"]),
                 )
+
+                manifest["entries"]["tags"].append({
+                    "id": ident,
+                    "path": tag["path"],
+                    "checksum": self.checksum(tag["data"]),
+                })
 
             #
             # Setlists
             #
-            for setlist in library.setlists.values():
+            for ident, setlist in library.setlists.items():
 
-                self.save_json(
-                    archive,
+                archive.writestr(
                     setlist["path"],
-                    setlist["data"],
+                    self.json_text(setlist["data"]),
                 )
 
+                manifest["entries"]["setlists"].append({
+                    "id": ident,
+                    "path": setlist["path"],
+                    "checksum": self.checksum(setlist["data"]),
+                })
+
+            archive.writestr(
+                "manifest.json",
+                self.json_text(manifest),
+            )
+
+        library.manifest = manifest
         library.modified = False
 
     @staticmethod
@@ -168,3 +201,20 @@ class Backup:
                 ensure_ascii=False,
             ),
         )
+
+    @staticmethod
+    def json_text(data):
+
+        return json.dumps(
+            data,
+            indent=2,
+            ensure_ascii=False,
+        )
+
+
+    @staticmethod
+    def checksum(data):
+
+        return hashlib.sha256(
+            Backup.json_text(data).encode("utf-8")
+        ).hexdigest()

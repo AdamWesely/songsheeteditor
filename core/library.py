@@ -10,6 +10,8 @@ from copy import deepcopy
 
 import re
 
+import uuid
+
 class Library:
     """
     Knihovna načtená do paměti.
@@ -78,7 +80,7 @@ class Library:
         data["key"] = "C"
         data["rawLyrics"] = ""
 
-        song = Song.from_json("", data)
+        song = Song.from_json(path, data)
 
         self.add_song(song)
 
@@ -111,29 +113,26 @@ class Library:
 
         for song in self.songs:
 
-            m = re.search(r"/Song/p(\d+)$", song.id)
+            m = re.search(
+                r"x-coredata---(.+)-Song-p(\d+)\.json$",
+                song.path,
+            )
 
-            if m:
-                highest = max(highest, int(m.group(1)))
+            if not m:
+                continue
 
-            if coredata is None:
-                m = re.search(
-                    r"x-coredata://([^/]+)/Song/",
-                    song.id,
-                )
+            coredata = m.group(1)
+            highest = max(highest, int(m.group(2)))
 
-                if m:
-                    coredata = m.group(1)
+        if coredata is None:
+            raise RuntimeError("Nepodařilo se zjistit CoreData GUID.")
 
         number = highest + 1
 
-        song_id = (
-            f"x-coredata://{coredata}/Song/p{number}"
-        )
+        song_id = str(uuid.uuid4()).upper()
 
         path = (
-            "songs/"
-            f"x-coredata---{coredata}-Song-p{number}.json"
+            f"songs/x-coredata---{coredata}-Song-p{number}.json"
         )
 
         return song_id, path
