@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainwindow.ui'
+## Form generated from reading UI file 'mainwindowwithtabs.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.11.1
 ##
@@ -18,74 +18,89 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLineEdit,
     QListWidget, QListWidgetItem, QMainWindow, QMenuBar,
-    QPlainTextEdit, QSizePolicy, QStatusBar, QToolBar,
-    QVBoxLayout, QWidget)
+    QPlainTextEdit, QPushButton, QSizePolicy, QStatusBar,
+    QTabWidget, QToolBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(918, 795)
+        MainWindow.resize(1047, 1169)
+        MainWindow.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.actionOpen = QAction(MainWindow)
         self.actionOpen.setObjectName(u"actionOpen")
         self.actionOpen.setMenuRole(QAction.MenuRole.NoRole)
         self.actionSave = QAction(MainWindow)
         self.actionSave.setObjectName(u"actionSave")
         self.actionSave.setMenuRole(QAction.MenuRole.NoRole)
-        self.actionNewSong = QAction(MainWindow)
-        self.actionNewSong.setObjectName(u"actionNewSong")
-        self.actionNewSong.setMenuRole(QAction.MenuRole.NoRole)
-        self.actionDeleteSong = QAction(MainWindow)
-        self.actionDeleteSong.setObjectName(u"actionDeleteSong")
-        self.actionDeleteSong.setMenuRole(QAction.MenuRole.NoRole)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.layoutWidget = QWidget(self.centralwidget)
+        self.tabWidget = QTabWidget(self.centralwidget)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setGeometry(QRect(0, 0, 1041, 1091))
+        self.songEdit = QWidget()
+        self.songEdit.setObjectName(u"songEdit")
+        self.layoutWidget = QWidget(self.songEdit)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(0, 0, 911, 711))
+        self.layoutWidget.setGeometry(QRect(0, 0, 1031, 1061))
         self.horizontalLayout = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.leftPanel = QWidget(self.layoutWidget)
         self.leftPanel.setObjectName(u"leftPanel")
-        self.verticalLayoutWidget = QWidget(self.leftPanel)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 291, 711))
-        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.searchEdit = QLineEdit(self.verticalLayoutWidget)
+        self.verticalLayoutWidget_5 = QWidget(self.leftPanel)
+        self.verticalLayoutWidget_5.setObjectName(u"verticalLayoutWidget_5")
+        self.verticalLayoutWidget_5.setGeometry(QRect(0, 0, 261, 1061))
+        self.verticalLayout_9 = QVBoxLayout(self.verticalLayoutWidget_5)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.searchEdit = QLineEdit(self.verticalLayoutWidget_5)
         self.searchEdit.setObjectName(u"searchEdit")
 
-        self.verticalLayout.addWidget(self.searchEdit)
+        self.verticalLayout_9.addWidget(self.searchEdit)
 
-        self.songList = QListWidget(self.verticalLayoutWidget)
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.actionNewSong = QPushButton(self.verticalLayoutWidget_5)
+        self.actionNewSong.setObjectName(u"actionNewSong")
+
+        self.horizontalLayout_6.addWidget(self.actionNewSong)
+
+        self.actionDeleteSong = QPushButton(self.verticalLayoutWidget_5)
+        self.actionDeleteSong.setObjectName(u"actionDeleteSong")
+
+        self.horizontalLayout_6.addWidget(self.actionDeleteSong)
+
+
+        self.verticalLayout_9.addLayout(self.horizontalLayout_6)
+
+        self.songList = QListWidget(self.verticalLayoutWidget_5)
         self.songList.setObjectName(u"songList")
 
-        self.verticalLayout.addWidget(self.songList)
+        self.verticalLayout_9.addWidget(self.songList)
 
 
         self.horizontalLayout.addWidget(self.leftPanel)
 
         self.rightPanel = QWidget(self.layoutWidget)
         self.rightPanel.setObjectName(u"rightPanel")
-        self.formLayoutWidget = QWidget(self.rightPanel)
-        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
-        self.formLayoutWidget.setGeometry(QRect(0, 0, 681, 711))
-        self.verticalLayout_2 = QVBoxLayout(self.formLayoutWidget)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.titleEdit = QLineEdit(self.formLayoutWidget)
+        self.formLayoutWidget_5 = QWidget(self.rightPanel)
+        self.formLayoutWidget_5.setObjectName(u"formLayoutWidget_5")
+        self.formLayoutWidget_5.setGeometry(QRect(0, 0, 771, 1061))
+        self.verticalLayout_10 = QVBoxLayout(self.formLayoutWidget_5)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.titleEdit = QLineEdit(self.formLayoutWidget_5)
         self.titleEdit.setObjectName(u"titleEdit")
 
-        self.verticalLayout_2.addWidget(self.titleEdit)
+        self.verticalLayout_10.addWidget(self.titleEdit)
 
-        self.artistEdit = QLineEdit(self.formLayoutWidget)
+        self.artistEdit = QLineEdit(self.formLayoutWidget_5)
         self.artistEdit.setObjectName(u"artistEdit")
 
-        self.verticalLayout_2.addWidget(self.artistEdit)
+        self.verticalLayout_10.addWidget(self.artistEdit)
 
-        self.keyCombo = QComboBox(self.formLayoutWidget)
+        self.keyCombo = QComboBox(self.formLayoutWidget_5)
         self.keyCombo.addItem("")
         self.keyCombo.addItem("")
         self.keyCombo.addItem("")
@@ -100,26 +115,26 @@ class Ui_MainWindow(object):
         self.keyCombo.addItem("")
         self.keyCombo.setObjectName(u"keyCombo")
 
-        self.verticalLayout_2.addWidget(self.keyCombo)
+        self.verticalLayout_10.addWidget(self.keyCombo)
 
-        self.lyricsEdit = QPlainTextEdit(self.formLayoutWidget)
+        self.lyricsEdit = QPlainTextEdit(self.formLayoutWidget_5)
         self.lyricsEdit.setObjectName(u"lyricsEdit")
 
-        self.verticalLayout_2.addWidget(self.lyricsEdit)
+        self.verticalLayout_10.addWidget(self.lyricsEdit)
 
-        self.keyCombo.raise_()
-        self.artistEdit.raise_()
-        self.lyricsEdit.raise_()
-        self.titleEdit.raise_()
 
         self.horizontalLayout.addWidget(self.rightPanel)
 
         self.horizontalLayout.setStretch(0, 1)
         self.horizontalLayout.setStretch(1, 3)
+        self.tabWidget.addTab(self.songEdit, "")
+        self.playlistEdit = QWidget()
+        self.playlistEdit.setObjectName(u"playlistEdit")
+        self.tabWidget.addTab(self.playlistEdit, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 918, 33))
+        self.menubar.setGeometry(QRect(0, 0, 1047, 33))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -130,10 +145,11 @@ class Ui_MainWindow(object):
 
         self.toolBar.addAction(self.actionOpen)
         self.toolBar.addAction(self.actionSave)
-        self.toolBar.addAction(self.actionNewSong)
-        self.toolBar.addAction(self.actionDeleteSong)
 
         self.retranslateUi(MainWindow)
+
+        self.tabWidget.setCurrentIndex(0)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -141,10 +157,13 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"SongSheet Editor by Adam Vesely v0.1", None))
         self.actionOpen.setText(QCoreApplication.translate("MainWindow", u"Otev\u0159\u00edt", None))
-        self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Ulo\u017eit", None))
-        self.actionNewSong.setText(QCoreApplication.translate("MainWindow", u"Nov\u00e1 skladba", None))
-        self.actionDeleteSong.setText(QCoreApplication.translate("MainWindow", u"Smazat", None))
+        self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Ulo\u017eit jako", None))
+#if QT_CONFIG(tooltip)
+        self.actionSave.setToolTip(QCoreApplication.translate("MainWindow", u"Ulo\u017eit jako", None))
+#endif // QT_CONFIG(tooltip)
         self.searchEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Hledat...", None))
+        self.actionNewSong.setText(QCoreApplication.translate("MainWindow", u"New", None))
+        self.actionDeleteSong.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.keyCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"C", None))
         self.keyCombo.setItemText(1, QCoreApplication.translate("MainWindow", u"C#", None))
         self.keyCombo.setItemText(2, QCoreApplication.translate("MainWindow", u"D", None))
@@ -158,6 +177,8 @@ class Ui_MainWindow(object):
         self.keyCombo.setItemText(10, QCoreApplication.translate("MainWindow", u"Bb", None))
         self.keyCombo.setItemText(11, QCoreApplication.translate("MainWindow", u"B", None))
 
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.songEdit), QCoreApplication.translate("MainWindow", u"Songs", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.playlistEdit), QCoreApplication.translate("MainWindow", u"Playlists", None))
         self.toolBar.setWindowTitle(QCoreApplication.translate("MainWindow", u"toolBar", None))
     # retranslateUi
 

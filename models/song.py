@@ -36,6 +36,7 @@ class Song:
 
         data = deepcopy(self.raw)
 
+        data["id"] = self.id
         data["title"] = self.title
         data["artist"] = self.artist
         data["key"] = self.key

@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
         self.current_song = None
 
         self.connect_signals()
-
+        self.visible_songs = []
         self.loading_song = False
 
     def connect_signals(self):
@@ -40,8 +40,12 @@ class MainWindow(QMainWindow):
         self.ui.keyCombo.currentTextChanged.connect(self.song_changed)
         self.ui.lyricsEdit.textChanged.connect(self.song_changed)
         self.ui.actionSave.triggered.connect(self.save_backup)
-        self.ui.actionNewSong.triggered.connect(self.new_song)
-        self.ui.actionDeleteSong.triggered.connect(self.delete_song)
+        self.ui.actionNewSong.clicked.connect(self.new_song)
+        self.ui.actionDeleteSong.clicked.connect(self.delete_song)
+
+        self.ui.searchEdit.textChanged.connect(
+            self.refresh_song_list
+        )
 
     def save_backup(self):
 
@@ -62,11 +66,39 @@ class MainWindow(QMainWindow):
 
     def refresh_song_list(self):
 
+        current = self.current_song
+
         self.ui.songList.clear()
 
-        for song in self.library:
+        text = self.ui.searchEdit.text().strip().casefold()
+
+        songs = sorted(
+            self.library.songs,
+            key=lambda s: s.title.casefold()
+        )
+
+        if text:
+            songs = [
+                s for s in songs
+                if (
+                    text in s.title.casefold()
+                    or text in s.artist.casefold()
+                )
+            ]
+
+        self.visible_songs = songs
+
+        current_row = -1
+
+        for row, song in enumerate(self.visible_songs):
 
             self.ui.songList.addItem(str(song))
+
+            if song is current:
+                current_row = row
+
+        if current_row >= 0:
+            self.ui.songList.setCurrentRow(current_row)
 
     def song_selected(self, row):
 
@@ -77,7 +109,7 @@ class MainWindow(QMainWindow):
 
         try:
 
-            self.current_song = self.library.get(row)
+            self.current_song = self.visible_songs[row]
 
             self.ui.titleEdit.setText(self.current_song.title)
             self.ui.artistEdit.setText(self.current_song.artist)
@@ -132,7 +164,9 @@ class MainWindow(QMainWindow):
 
         self.refresh_song_list()
 
-        row = self.library.index(song)
+        self.refresh_song_list()
+
+        row = self.visible_songs.index(song)
 
         self.ui.songList.setCurrentRow(row)
 
@@ -161,9 +195,9 @@ class MainWindow(QMainWindow):
 
         self.refresh_song_list()
 
-        if len(self.library):
+        if self.visible_songs:
             self.ui.songList.setCurrentRow(
-                min(row, len(self.library) - 1)
+                min(row, len(self.visible_songs)-1)
             )
         else:
             self.current_song = None

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import zipfile
 from pathlib import Path
-
+from copy import deepcopy
 from core.library import Library
 from models.song import Song
 
@@ -26,12 +26,15 @@ class Backup:
             #
             # Songs
             #
-            for entry in manifest["entries"]["songs"]:
+            for index, entry in enumerate(manifest["entries"]["songs"]):
 
                 data = self.load_json(
                     archive,
                     entry["path"],
                 )
+
+                if index == 0:
+                    library.song_template = deepcopy(data)
 
                 song = Song.from_json(
                     entry["path"],
