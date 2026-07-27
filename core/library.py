@@ -31,7 +31,7 @@ class Library:
 
         self.tags: dict = {}
 
-        self.setlists: dict = {}
+        self.setlists: list[SetList] = []
 
         self.modified = False
 
@@ -136,6 +136,16 @@ class Library:
         )
 
         return song_id, path
+
+    def add_setlist(self, setlist):
+
+        self.setlists.append(setlist)
+        self.modified = True
+
+    def remove_setlist(self, setlist):
+        
+        self.setlists.remove(setlist)
+        self.modified = True
 
     # ---------------------------------------------------------
 

@@ -8,6 +8,7 @@ from core.library import Library
 from models.song import Song
 import hashlib
 from copy import deepcopy
+from models.setlist import SetList
 
 
 class Backup:
@@ -76,13 +77,18 @@ class Backup:
             #
             for entry in manifest["entries"]["setlists"]:
 
-                library.setlists[entry["id"]] = {
-                    "path": entry["path"],
-                    "data": self.load_json(
-                        archive,
+                data = self.load_json(
+                    archive,
+                    entry["path"],
+                )
+
+                library.setlists.append(
+                    SetList.from_json(
                         entry["path"],
-                    ),
-                }
+                        data,
+                        library,
+                    )
+                )
 
         library.modified = False
 
@@ -163,17 +169,19 @@ class Backup:
             #
             # Setlists
             #
-            for ident, setlist in library.setlists.items():
+            for setlist in library.setlists:
+
+                data = setlist.to_json()
 
                 archive.writestr(
-                    setlist["path"],
-                    self.json_text(setlist["data"]),
+                    setlist.path,
+                    self.json_text(data),
                 )
 
                 manifest["entries"]["setlists"].append({
-                    "id": ident,
-                    "path": setlist["path"],
-                    "checksum": self.checksum(setlist["data"]),
+                    "id": setlist.id,
+                    "path": setlist.path,
+                    "checksum": self.checksum(data),
                 })
 
             archive.writestr(

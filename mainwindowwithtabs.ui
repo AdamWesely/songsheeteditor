@@ -11,180 +11,278 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SongSheet Editor by Adam Vesely v0.1</string>
+   <string>SongSheet Editor by Adam Vesely v0.2</string>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LayoutDirection::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1041</width>
-      <height>1091</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="songEdit">
-     <attribute name="title">
-      <string>Songs</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1031</width>
-        <height>1061</height>
-       </rect>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_7">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,3">
-       <item>
-        <widget class="QWidget" name="leftPanel" native="true">
-         <widget class="QWidget" name="verticalLayoutWidget_5">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>261</width>
-            <height>1061</height>
-           </rect>
+      <widget class="QWidget" name="songEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <attribute name="title">
+        <string>Songs</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,3">
+          <property name="sizeConstraint">
+           <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_9">
-           <item>
-            <widget class="QLineEdit" name="searchEdit">
-             <property name="placeholderText">
-              <string>Hledat...</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QWidget" name="leftPanel" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QPushButton" name="actionNewSong">
-               <property name="text">
-                <string>New</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="actionDeleteSong">
-               <property name="text">
-                <string>Delete</string>
-               </property>
-              </widget>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="QLineEdit" name="searchEdit">
+                 <property name="placeholderText">
+                  <string>Hledat...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <item>
+                  <widget class="QPushButton" name="actionNewSong">
+                   <property name="text">
+                    <string>New</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="actionDeleteSong">
+                   <property name="text">
+                    <string>Delete</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QListWidget" name="songList"/>
+               </item>
+              </layout>
              </item>
             </layout>
-           </item>
-           <item>
-            <widget class="QListWidget" name="songList"/>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QWidget" name="rightPanel" native="true">
-         <widget class="QWidget" name="formLayoutWidget_5">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>771</width>
-            <height>1061</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_10">
-           <item>
-            <widget class="QLineEdit" name="titleEdit"/>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="artistEdit"/>
-           </item>
-           <item>
-            <widget class="QComboBox" name="keyCombo">
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="rightPanel" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <property name="text">
-               <string>C</string>
-              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QLineEdit" name="titleEdit"/>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="artistEdit"/>
+               </item>
+               <item>
+                <widget class="QComboBox" name="keyCombo">
+                 <item>
+                  <property name="text">
+                   <string>C</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>C#</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>D</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Eb</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>E</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>F</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>F#</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>G</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Ab</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>A</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Bb</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>B</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPlainTextEdit" name="lyricsEdit"/>
+               </item>
+              </layout>
              </item>
-             <item>
-              <property name="text">
-               <string>C#</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>D</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Eb</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>E</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>F</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>F#</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>G</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Ab</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>A</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Bb</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>B</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPlainTextEdit" name="lyricsEdit"/>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="playlistEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <attribute name="title">
+        <string>Playlists</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,3">
+          <item>
+           <layout class="QVBoxLayout" name="leftPanel_2">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QPushButton" name="actionNewSetlist">
+                <property name="text">
+                 <string>New</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="actionDeleteSetlist">
+                <property name="text">
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="actionRenameSetlist">
+                <property name="text">
+                 <string>Rename</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QListWidget" name="setlistList"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="rightPanel_2">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
+                <item>
+                 <widget class="QLineEdit" name="songLibrarySearch">
+                  <property name="placeholderText">
+                   <string>Search songs...</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QListWidget" name="songLibraryList">
+                  <property name="dragEnabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="dragDropMode">
+                   <enum>QAbstractItemView::DragDropMode::DragOnly</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="SetlistWidget" name="setlistSongs">
+                  <property name="acceptDrops">
+                   <bool>true</bool>
+                  </property>
+                  <property name="dragEnabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="dragDropMode">
+                   <enum>QAbstractItemView::DragDropMode::DragDrop</enum>
+                  </property>
+                  <property name="defaultDropAction">
+                   <enum>Qt::DropAction::MoveAction</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="playlistEdit">
-     <attribute name="title">
-      <string>Playlists</string>
-     </attribute>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -212,7 +310,10 @@
   </widget>
   <action name="actionOpen">
    <property name="text">
-    <string>Otevřít</string>
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -220,16 +321,23 @@
   </action>
   <action name="actionSave">
    <property name="text">
-    <string>Uložit jako</string>
+    <string>Save as...</string>
    </property>
    <property name="toolTip">
-    <string>Uložit jako</string>
+    <string>Save as...</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SetlistWidget</class>
+   <extends>QListWidget</extends>
+   <header>widgets.setlist_widget</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
